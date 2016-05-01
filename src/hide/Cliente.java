@@ -23,7 +23,7 @@ public class Cliente {
     private String cidade;
     private String status;
     private int idMedidas;
-    
+    private String email;
     
 
     /**
@@ -235,5 +235,19 @@ public class Cliente {
         System.out.print(":"+c.get(Calendar.SECOND));
         
         System.out.println();
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
