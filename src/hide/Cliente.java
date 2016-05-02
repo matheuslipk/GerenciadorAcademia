@@ -1,5 +1,7 @@
 package hide;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -13,8 +15,8 @@ public class Cliente {
     private String nome;
     private String rg;
     private String cpf;
-    private String telefoneResidencial;
-    private String celular;
+    private String telefone1;
+    private String telefone2;
     private Date dataInclusao;
     private Date dataNascimento;
     private String objetivo;
@@ -24,6 +26,7 @@ public class Cliente {
     private String status;
     private int idMedidas;
     private String email;
+    private String uf;
     
 
     /**
@@ -83,31 +86,31 @@ public class Cliente {
     }
 
     /**
-     * @return the telefoneResidencial
+     * @return the telefone1
      */
-    public String getTelefoneResidencial() {
-        return telefoneResidencial;
+    public String getTelefone1() {
+        return telefone1;
     }
 
     /**
-     * @param telefoneResidencial the telefoneResidencial to set
+     * @param telefone1 the telefone1 to set
      */
-    public void setTelefoneResidencial(String telefoneResidencial) {
-        this.telefoneResidencial = telefoneResidencial;
+    public void setTelefone1(String telefone1) {
+        this.telefone1 = telefone1;
     }
 
     /**
-     * @return the celular
+     * @return the telefone2
      */
-    public String getCelular() {
-        return celular;
+    public String getTelefone2() {
+        return telefone2;
     }
 
     /**
-     * @param celular the celular to set
+     * @param telefone2 the telefone2 to set
      */
-    public void setCelular(String celular) {
-        this.celular = celular;
+    public void setTelefone2(String telefone2) {
+        this.telefone2 = telefone2;
     }
 
     /**
@@ -221,22 +224,6 @@ public class Cliente {
     public void setIdMedidas(int idMedidas) {
         this.idMedidas = idMedidas;
     }
-    
-    public static void main(String arg[]){
-        Calendar c;
-        c = Calendar.getInstance();
-        
-        c.set(Calendar.MONTH, Calendar.MAY);
-        System.out.println(c.get(Calendar.MONTH));
-        System.out.println(c.get(Calendar.DATE));
-        System.out.println(c.get(Calendar.YEAR));
-        System.out.print(c.get(Calendar.HOUR_OF_DAY));
-        System.out.print(":"+c.get(Calendar.MINUTE));
-        System.out.print(":"+c.get(Calendar.SECOND));
-        
-        System.out.println();
-    }
-
     /**
      * @return the email
      */
@@ -249,5 +236,38 @@ public class Cliente {
      */
     public void setEmail(String email) {
         this.email = email;
+    }
+    
+    public static void main(String arg[]) throws ParseException{
+        Calendar c;
+        c = Calendar.getInstance();
+        
+        c.set(Calendar.MONTH, Calendar.MAY);
+        System.out.println(c.get(Calendar.MONTH));
+        System.out.println(c.get(Calendar.DATE));
+        System.out.println(c.get(Calendar.YEAR));
+        System.out.print(c.get(Calendar.HOUR_OF_DAY));
+        System.out.print(":"+c.get(Calendar.MINUTE));
+        System.out.print(":"+c.get(Calendar.SECOND));
+        
+        System.out.println();
+        
+        DateFormat f = DateFormat.getDateInstance();
+        Date data = f.parse("02/05/2016");
+        System.out.println(data);
+    }
+
+    /**
+     * @return the uf
+     */
+    public String getUf() {
+        return uf;
+    }
+
+    /**
+     * @param uf the uf to set
+     */
+    public void setUf(String uf) {
+        this.uf = uf;
     }
 }

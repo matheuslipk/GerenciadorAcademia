@@ -7,7 +7,10 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.util.Calendar;
+import java.util.Date;
 
 public class Conexao {
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -38,19 +41,30 @@ public class Conexao {
             
             while(resultSet.next()){
                 cliente.setNome(resultSet.getObject(2).toString());
-                cliente.setEndereco(resultSet.getObject(3).toString());
-                cliente.setBairro(resultSet.getObject(5).toString());                
-                cliente.setCidade(resultSet.getObject(6).toString());
-                cliente.setUf(resultSet.getObject(7).toString());                
-                cliente.setCpf(resultSet.getObject(9).toString());
-                cliente.setNome(resultSet.getObject(2).toString());                
-                cliente.setEndereco(resultSet.getObject(3).toString());
-                cliente.setBairro(resultSet.getObject(5).toString());                
-                cliente.setCidade(resultSet.getObject(6).toString());
-                cliente.setUf(resultSet.getObject(7).toString());                
-                cliente.setCpf(resultSet.getObject(9).toString());
+                
+                try {
+                    cliente.setDataInclusao(dataFormt(resultSet.getObject(3).toString()));
+                    cliente.setDataNascimento(dataFormt(resultSet.getObject(4).toString()));
+                } catch (ParseException ex) {
+                    System.out.println("Erro na funcao pesquisarCliente.Conexão:"+ex);
+                    return null;
+                }
+                                
+                cliente.setRg(resultSet.getObject(5).toString());
+                cliente.setCpf(resultSet.getObject(6).toString());
+                cliente.setEmail(resultSet.getObject(7).toString());
+                cliente.setTelefone1(resultSet.getObject(8).toString());                
+                cliente.setTelefone2(resultSet.getObject(9).toString());
+                cliente.setObjetivo(resultSet.getObject(10).toString());                
+                cliente.setEndereco(resultSet.getObject(11).toString());
+                cliente.setBairro(resultSet.getObject(12).toString());                
+                cliente.setCidade(resultSet.getObject(13).toString());
+                cliente.setUf(resultSet.getObject(14).toString());                
+                cliente.setStatus(resultSet.getObject(15).toString());
             }
 
+            
+            
         }catch(SQLException e){
             System.out.println("ERRO SQLException");
             e.printStackTrace();            
@@ -70,6 +84,29 @@ public class Conexao {
         return cliente;
     }
     
+    private Date dataFormt(String data) throws ParseException{
+        data = dataFormatSqlInver(data);
+        DateFormat f = DateFormat.getDateInstance();
+        return f.parse(data);
+    }
+    
+    private String dataFormatSql(Date data){
+        Calendar a = Calendar.getInstance();
+        a.set(Calendar.DAY_OF_MONTH, data.getDate());
+        a.set(Calendar.MONTH, data.getMonth());
+        a.set(Calendar.YEAR, data.getYear()+1900); 
+        
+        return String.format("%d-%d-%d", a.get(Calendar.YEAR), a.get(Calendar.MONTH)+1,
+                a.get(Calendar.DAY_OF_MONTH));
+    }
+    
+    private String dataFormatSqlInver(String dataSql){
+        String arrayData[] = dataSql.split("-");               
+        return String.format("%s/%s/%s", arrayData[2], arrayData[1], arrayData[0]);
+    }
+    
+    
+    
     public void editarCliente(Cliente cliente){
         Connection connection = null; //Gerencia a conexão
         Statement statement = null; //Instrução de consulta
@@ -78,17 +115,22 @@ public class Conexao {
             Class.forName(JDBC_DRIVER);
             connection = DriverManager.getConnection(URL_BANCO, USUARIO, SENHA_BANCO);
             statement = connection.createStatement();
-            String comando = null;
+            String comando;
             
-//            comando = String.format("UPDATE cliente SET nome=\'%s\', "
-//                    + "endereco=\'%s\', numero=%d, bairro=\'%s\', cidade=\'%s\', cep=\'%s\', "
-//                    + "uf=\'%s\', cpf=\'%s\' WHERE idCliente=%d",  cliente.getNome(), cliente.getEndereco(),
-//            Integer.parseInt(cliente.getNumero()), cliente.getBairro(), cliente.getCidade(), cliente.getCep(),
-//            cliente.getUf(), cliente.getCpf(), cliente.getId());
+            comando = String.format("UPDATE cliente SET nome=\'%s\', "
+                    + "dataInclusao=\'%s\', dataNascimento=\'%s\', rg=\'%s\', email=\'%s\', telefone1=\'%s\', "
+                    + "telefone2=\'%s\',objetivo=\'%s\', cpf=\'%s\', endereco=\'%s\',"
+                    + "bairro=\'%s\', cidade=\'%s\', uf=\'%s\', status=\'%s\' WHERE idCliente=%d",
+                    cliente.getNome(), dataFormatSql(cliente.getDataInclusao()),
+            dataFormatSql(cliente.getDataNascimento()), cliente.getRg(), cliente.getEmail(), 
+            cliente.getTelefone1(), cliente.getTelefone2(), cliente.getObjetivo(), cliente.getCpf(),
+            cliente.getEndereco(),cliente.getBairro(), cliente.getCidade(), cliente.getUf(),
+            cliente.getStatus(), cliente.getIdCliente());
             
             System.out.println(comando);
             
             int resultado = statement.executeUpdate(comando);
+            
             System.out.println("retorno = "+resultado);
 
         }catch(SQLException e){
@@ -119,11 +161,15 @@ public class Conexao {
             statement = connection.createStatement();
             String comando = null;
             
-//            comando = String.format("INSERT INTO cliente (nome, endereco, numero, "
-//                    + "bairro, cidade, cep, uf, cpf) VALUES (\'%s\', \'%s\',\'%d\',"
-//                    + "\'%s\',\'%s\',\'%s\',\'%s\',\'%s\')",  cliente.getNome(), cliente.getEndereco(),
-//            Integer.parseInt(cliente.getNumero()), cliente.getBairro(), cliente.getCidade(), cliente.getCep(),
-//            cliente.getUf(), cliente.getCpf(), cliente.getId());
+            comando = String.format("INSERT INTO cliente (nome, dataInclusao, dataNascimento, "
+                    + "rg, email, telefone1, telefone2, objetivo, cpf, endereco, "
+                    + "bairro, cidade, uf, status) VALUES (\'%s\', \'%s\',\'%s\', "
+                    + "\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\', "
+                    + "\'%s\',\'%s\',\'%s\')",  cliente.getNome(), dataFormatSql(cliente.getDataInclusao()),
+                    dataFormatSql(cliente.getDataNascimento()), cliente.getRg(), cliente.getEmail(),
+                    cliente.getTelefone1(), cliente.getTelefone2(), cliente.getObjetivo(),
+                    cliente.getCpf(), cliente.getEndereco(), cliente.getBairro(),
+                    cliente.getCidade(), cliente.getUf(), cliente.getStatus());
             
             System.out.println(comando);
             
