@@ -13,12 +13,12 @@ import javax.swing.JOptionPane;
  *
  * @author h4ck3r
  */
-public class PainelCadastroCliente extends javax.swing.JPanel {
+public class PainelRegistroCliente extends javax.swing.JPanel {
 
     /**
      * Creates new form pCadastroCliente
      */
-    public PainelCadastroCliente() {
+    public PainelRegistroCliente() {
         initComponents();
     }
 
@@ -85,6 +85,7 @@ public class PainelCadastroCliente extends javax.swing.JPanel {
         jLabel16 = new javax.swing.JLabel();
         cbSexo = new javax.swing.JComboBox();
         painelAdcionarMedidas1 = new view.painel.PainelAdcionarMedidas();
+        jLabel17 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -650,23 +651,30 @@ public class PainelCadastroCliente extends javax.swing.JPanel {
         painelGuia.addTab("Cliente", painelDadosClientes);
         painelGuia.addTab("Avaliação", painelAdcionarMedidas1);
 
+        jLabel17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/sem-imagem.png"))); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(painelGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 779, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(painelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(painelNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 225, Short.MAX_VALUE))
+                .addGap(60, 60, 60)
+                .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(painelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(painelNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(painelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(painelNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel17, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(painelGuia))
         );
@@ -675,6 +683,7 @@ public class PainelCadastroCliente extends javax.swing.JPanel {
     private void botaoNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoNovoActionPerformed
         liberarCampos();
         limparCampos();
+        painelGuia.setSelectedIndex(0);
         tfId.setText("(Automatico)");
         botaoNovo.setEnabled(true);
         botaoEditar.setEnabled(false);
@@ -767,6 +776,7 @@ public class PainelCadastroCliente extends javax.swing.JPanel {
         botaoPesquisar.setEnabled(true);
         botaoAtualizar.setEnabled(false);
         bloquearCampos();
+        jlNomeCliente.setText(cliente.getNome());
         JOptionPane.showMessageDialog(this, Strings.mensAtuaSucesso);
     }//GEN-LAST:event_botaoAtualizarActionPerformed
 
@@ -926,6 +936,7 @@ public class PainelCadastroCliente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
