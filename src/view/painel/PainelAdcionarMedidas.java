@@ -1,6 +1,9 @@
 package view.painel;
 
+import bancodedados.ConexaoMedidas;
+import hide.Medidas;
 import view.jframe.TelaAjudaCQ;
+import java.util.Calendar;
 
 /**
  *
@@ -532,6 +535,11 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
         botaoSalvarDados.setText("Salvar dados");
         botaoSalvarDados.setEnabled(false);
         botaoSalvarDados.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        botaoSalvarDados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoSalvarDadosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
@@ -658,6 +666,13 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
         tela.setVisible(true);
     }//GEN-LAST:event_botaoAjudaCQActionPerformed
 
+    private void botaoSalvarDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarDadosActionPerformed
+        Medidas medida = getDadosTelaMedidas();
+        
+        new ConexaoMedidas().addMedidas(medida);
+        
+    }//GEN-LAST:event_botaoSalvarDadosActionPerformed
+
     public void setIdCliente(int id){
         jlIdCliente.setText(""+id);
         if(id==0)
@@ -710,7 +725,131 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
         botaoSalvarDados.setEnabled(true);
     }
     
+    private void limparCampos(){
+        tfAbdomen.setText(null);
+        tfAntebracoDir.setText(null);
+        tfAntebracoEsq.setText(null);
+        tfBracContDir.setText(null);
+        tfBracContEsq.setText(null);
+        tfBracRelDir.setText(null);
+        tfBracRelEsq.setText(null);
+        tfCintura.setText(null);
+        tfCoxaDir.setText(null);
+        tfCoxaEsq.setText(null);
+        tfOmbro.setText(null);
+        tfPanturrilhaDir.setText(null);
+        tfPanturrilhaEsq.setText(null);
+        tfPescoco.setText(null);
+        tfQuadril.setText(null);
+        tfRCQ.setText(null);
+        tfToraxIns.setText(null);
+        tfToraxRelx.setText(null);
+    }
+    
+    private boolean validarCampos(Medidas medida){
+        
+        if(medida.getIdCliente()==0){
+            return false;
+        }
+        if(medida.getAbdomen()==0){
+            return false;
+        }
+        if(medida.getAntebracoDir()==0){
+            return false;
+        }
+        if(medida.getAntebracoEsq()==0){
+            return false;
+        }
+        if(medida.getBracoConDir()==0){
+            return false;
+        }
+        if(medida.getBracoConEsq()==0){
+            return false;
+        }
+        if(medida.getBracoRlxDir()==0){
+            return false;
+        }
+        if(medida.getBracoRlxEsq()==0){
+            return false;
+        }
+        if(medida.getCintura()==0){
+            return false;
+        }
+        if(medida.getCoxaDir()==0){
+            return false;
+        }
+        if(medida.getCoxaEsq()==0){
+            return false;
+        }        
+        if(medida.getOmbro()==0){
+            return false;
+        }
+        if(medida.getPanturrilhaDir()==0){
+            return false;
+        }
+        if(medida.getPanturrilhaEsq()==0){
+            return false;
+        }
+        if(medida.getPescoco()==0){
+            return false;
+        }
+        if(medida.getQuadril()==0){
+            return false;
+        }
+        if(medida.getRcq()==0){
+            return false;
+        }
+        if(medida.getToraxInsp()==0){
+            return false;
+        }
+        if(medida.getToraxRlx()==0){
+            return false;
+        }
+        
+        return true;
+    }
+    
+    private Medidas getDadosTelaMedidas(){
+        Medidas medida = new Medidas();
+        medida.setIdCliente(eliminarErro2(jlIdCliente.getText()));
+        medida.setAbdomen(eliminarErro(tfAbdomen.getText()));
+        medida.setAntebracoDir(eliminarErro(tfAntebracoDir.getText()));
+        medida.setAntebracoEsq(eliminarErro(tfAntebracoEsq.getText()));
+        medida.setBracoConDir(eliminarErro(tfBracContDir.getText()));
+        medida.setBracoConEsq(eliminarErro(tfBracContEsq.getText()));
+        medida.setBracoRlxDir(eliminarErro(tfBracRelDir.getText()));
+        medida.setBracoRlxEsq(eliminarErro(tfBracRelEsq.getText()));
+        medida.setCintura(eliminarErro(tfCintura.getText()));
+        medida.setCoxaDir(eliminarErro(tfCoxaDir.getText()));   
+        medida.setCoxaEsq(eliminarErro(tfCoxaEsq.getText()));  
+        medida.setOmbro(eliminarErro(tfOmbro.getText()));          
+        medida.setPanturrilhaDir(eliminarErro(tfPanturrilhaDir.getText()));        
+        medida.setPanturrilhaEsq(eliminarErro(tfPanturrilhaEsq.getText()));        
+        medida.setPescoco(eliminarErro(tfPescoco.getText()));                       
+        medida.setQuadril(eliminarErro(tfQuadril.getText()));
+        medida.setRcq(eliminarErro(tfRCQ.getText()));
+        medida.setToraxInsp(eliminarErro(tfToraxIns.getText()));    
+        medida.setToraxRlx(eliminarErro(tfToraxRelx.getText()));        
+        medida.setDataMedicao(Calendar.getInstance().getTime());
+        return medida;
+    }        
 
+    private double eliminarErro(String num){
+        try{
+            return Double.parseDouble(num);
+        }catch(Exception e){
+            return 0;
+        }        
+    }
+    
+    private int eliminarErro2(String num){
+        try{
+            return Integer.parseInt(num);
+        }catch(Exception e){
+            return 0;
+        }        
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAjudaCQ;
     private javax.swing.JButton botaoSalvarDados;
