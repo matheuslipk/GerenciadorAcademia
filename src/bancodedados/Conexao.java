@@ -39,7 +39,7 @@ public class Conexao {
 //                System.out.printf("%s\t", metaData.getCatalogName(i));
 //            System.out.println("");
             
-            while(resultSet.next()){
+            if(resultSet.next()){
                 cliente.setNome(resultSet.getObject(2).toString());
                 
                 try {
@@ -61,7 +61,10 @@ public class Conexao {
                 cliente.setCidade(resultSet.getObject(13).toString());
                 cliente.setUf(resultSet.getObject(14).toString());                
                 cliente.setStatus(resultSet.getObject(15).toString());
+                cliente.setSexo(resultSet.getObject(16).toString());
             }
+            else
+                return null;
 
             
             
@@ -103,9 +106,7 @@ public class Conexao {
     private String dataFormatSqlInver(String dataSql){
         String arrayData[] = dataSql.split("-");               
         return String.format("%s/%s/%s", arrayData[2], arrayData[1], arrayData[0]);
-    }
-    
-    
+    }        
     
     public void editarCliente(Cliente cliente){
         Connection connection = null; //Gerencia a conexão
@@ -120,12 +121,13 @@ public class Conexao {
             comando = String.format("UPDATE cliente SET nome=\'%s\', "
                     + "dataInclusao=\'%s\', dataNascimento=\'%s\', rg=\'%s\', email=\'%s\', telefone1=\'%s\', "
                     + "telefone2=\'%s\',objetivo=\'%s\', cpf=\'%s\', endereco=\'%s\',"
-                    + "bairro=\'%s\', cidade=\'%s\', uf=\'%s\', status=\'%s\' WHERE idCliente=%d",
+                    + "bairro=\'%s\', cidade=\'%s\', uf=\'%s\', status=\'%s\', "
+                    + "sexo=\'%s\' WHERE idCliente=%d",
                     cliente.getNome(), dataFormatSql(cliente.getDataInclusao()),
             dataFormatSql(cliente.getDataNascimento()), cliente.getRg(), cliente.getEmail(), 
             cliente.getTelefone1(), cliente.getTelefone2(), cliente.getObjetivo(), cliente.getCpf(),
             cliente.getEndereco(),cliente.getBairro(), cliente.getCidade(), cliente.getUf(),
-            cliente.getStatus(), cliente.getIdCliente());
+            cliente.getStatus(),cliente.getSexo() ,cliente.getIdCliente());
             
             System.out.println(comando);
             
@@ -163,13 +165,13 @@ public class Conexao {
             
             comando = String.format("INSERT INTO cliente (nome, dataInclusao, dataNascimento, "
                     + "rg, email, telefone1, telefone2, objetivo, cpf, endereco, "
-                    + "bairro, cidade, uf, status) VALUES (\'%s\', \'%s\',\'%s\', "
+                    + "bairro, cidade, uf, status, sexo) VALUES (\'%s\', \'%s\',\'%s\', "
                     + "\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\',\'%s\', "
-                    + "\'%s\',\'%s\',\'%s\')",  cliente.getNome(), dataFormatSql(cliente.getDataInclusao()),
+                    + "\'%s\',\'%s\',\'%s\', \'%s\')",  cliente.getNome(), dataFormatSql(cliente.getDataInclusao()),
                     dataFormatSql(cliente.getDataNascimento()), cliente.getRg(), cliente.getEmail(),
                     cliente.getTelefone1(), cliente.getTelefone2(), cliente.getObjetivo(),
                     cliente.getCpf(), cliente.getEndereco(), cliente.getBairro(),
-                    cliente.getCidade(), cliente.getUf(), cliente.getStatus());
+                    cliente.getCidade(), cliente.getUf(), cliente.getStatus(), cliente.getSexo());
             
             System.out.println(comando);
             

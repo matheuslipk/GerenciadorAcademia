@@ -1,4 +1,4 @@
-package view;
+package view.painel;
 
 import bancodedados.Conexao;
 import hide.Cliente;
@@ -81,7 +81,10 @@ public class PainelCadastroCliente extends javax.swing.JPanel {
         painelUf = new javax.swing.JPanel();
         cbUf = new javax.swing.JComboBox();
         jLabel15 = new javax.swing.JLabel();
-        painelMedidasCliente = new javax.swing.JPanel();
+        painelSexo = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
+        cbSexo = new javax.swing.JComboBox();
+        painelAdcionarMedidas1 = new view.painel.PainelAdcionarMedidas();
 
         setBackground(new java.awt.Color(255, 255, 255));
 
@@ -149,15 +152,12 @@ public class PainelCadastroCliente extends javax.swing.JPanel {
         );
         painelBotoesLayout.setVerticalGroup(
             painelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelBotoesLayout.createSequentialGroup()
-                .addGroup(painelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(botaoNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(botaoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(botaoAtualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 11, Short.MAX_VALUE))
+            .addGroup(painelBotoesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(botaoNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(botaoAtualizar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         painelNome.setBackground(new java.awt.Color(204, 255, 255));
@@ -172,9 +172,9 @@ public class PainelCadastroCliente extends javax.swing.JPanel {
         painelNomeLayout.setHorizontalGroup(
             painelNomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelNomeLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(73, Short.MAX_VALUE)
                 .addComponent(jlNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         painelNomeLayout.setVerticalGroup(
             painelNomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,6 +193,7 @@ public class PainelCadastroCliente extends javax.swing.JPanel {
         jLabel1.setText("ID Cliente");
 
         tfId.setForeground(new java.awt.Color(255, 0, 0));
+        tfId.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         javax.swing.GroupLayout painelIdLayout = new javax.swing.GroupLayout(painelId);
         painelId.setLayout(painelIdLayout);
@@ -549,6 +550,32 @@ public class PainelCadastroCliente extends javax.swing.JPanel {
                 .addGap(10, 10, 10))
         );
 
+        painelSexo.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel16.setText("Sexo");
+
+        cbSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Feminino" }));
+        cbSexo.setEnabled(false);
+
+        javax.swing.GroupLayout painelSexoLayout = new javax.swing.GroupLayout(painelSexo);
+        painelSexo.setLayout(painelSexoLayout);
+        painelSexoLayout.setHorizontalGroup(
+            painelSexoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelSexoLayout.createSequentialGroup()
+                .addGroup(painelSexoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel16)
+                    .addComponent(cbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 20, Short.MAX_VALUE))
+        );
+        painelSexoLayout.setVerticalGroup(
+            painelSexoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelSexoLayout.createSequentialGroup()
+                .addComponent(jLabel16)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
+        );
+
         javax.swing.GroupLayout painelDadosClientesLayout = new javax.swing.GroupLayout(painelDadosClientes);
         painelDadosClientes.setLayout(painelDadosClientesLayout);
         painelDadosClientesLayout.setHorizontalGroup(
@@ -565,7 +592,9 @@ public class PainelCadastroCliente extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(painelUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(painelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(painelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(painelSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(painelDadosClientesLayout.createSequentialGroup()
                         .addComponent(painelEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -586,7 +615,7 @@ public class PainelCadastroCliente extends javax.swing.JPanel {
                         .addComponent(painelDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(painelRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelDadosClientesLayout.setVerticalGroup(
             painelDadosClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -612,34 +641,25 @@ public class PainelCadastroCliente extends javax.swing.JPanel {
                     .addComponent(painelBairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(painelCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(painelUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(painelStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addGroup(painelDadosClientesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(painelSexo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(painelStatus, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(22, 22, 22))
         );
 
         painelGuia.addTab("Cliente", painelDadosClientes);
-
-        painelMedidasCliente.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout painelMedidasClienteLayout = new javax.swing.GroupLayout(painelMedidasCliente);
-        painelMedidasCliente.setLayout(painelMedidasClienteLayout);
-        painelMedidasClienteLayout.setHorizontalGroup(
-            painelMedidasClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 837, Short.MAX_VALUE)
-        );
-        painelMedidasClienteLayout.setVerticalGroup(
-            painelMedidasClienteLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 317, Short.MAX_VALUE)
-        );
-
-        painelGuia.addTab("Medidas", painelMedidasCliente);
+        painelGuia.addTab("Avaliação", painelAdcionarMedidas1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelBotoes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(painelNome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(painelGuia)
+            .addComponent(painelGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(painelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(painelNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 225, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -647,9 +667,8 @@ public class PainelCadastroCliente extends javax.swing.JPanel {
                 .addComponent(painelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(painelNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(painelGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 165, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(painelGuia))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -662,16 +681,32 @@ public class PainelCadastroCliente extends javax.swing.JPanel {
         botaoSalvar.setEnabled(true);
         botaoPesquisar.setEnabled(true);
         botaoAtualizar.setEnabled(false);
-        
+        painelAdcionarMedidas1.setIdCliente(0);
     }//GEN-LAST:event_botaoNovoActionPerformed
 
     private void botaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSalvarActionPerformed
-        Cliente cliente = getDadosTelaCliente();
-        if(cliente==null){
-            String mens = "Verifique se os campos estão preenchidos corretamente.";
+        if(tfNome.getText().length()<3){
+            String mens = "Digite um nome válido.";
             JOptionPane.showMessageDialog(this, mens,"Erro", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        if(tfDataInclusao.getText().length()<9){
+            String mens = "Verifique a data de inclusão";
+            JOptionPane.showMessageDialog(this, mens,"Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(tfDataNascimento.getText().length()<9){
+            String mens = "Verifique a data de nascimento";
+            JOptionPane.showMessageDialog(this, mens,"Erro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        Cliente cliente = getDadosTelaCliente();
+        
+        if(cliente==null){
+            return;
+        }
+        
         bloquearCampos();
         botaoSalvar.setEnabled(false);
         botaoNovo.setEnabled(true);
@@ -679,6 +714,7 @@ public class PainelCadastroCliente extends javax.swing.JPanel {
         
         new Conexao().addCliente(cliente);
         JOptionPane.showMessageDialog(this, Strings.mensCadSucesso , "Sucesso", JOptionPane.OK_OPTION);
+        
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
     private void botaoPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoPesquisarActionPerformed
@@ -690,15 +726,15 @@ public class PainelCadastroCliente extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Digite um ID válido", "Erro", JOptionPane.OK_OPTION);
             return;
         }
-        Cliente cliente = new Conexao().pesqIDCliente(Integer.parseInt(tfId.getText()));
-        System.out.printf("Nome cliente == nulo , %s\n", cliente.getNome()==null);        
-        if(cliente.getNome()==null){
+        Cliente cliente = new Conexao().pesqIDCliente(Integer.parseInt(tfId.getText()));      
+        if(cliente==null){
             jlNomeCliente.setText("Cliente não encontrado  !!!!!!!");
+            painelAdcionarMedidas1.setIdCliente(0);
             return;
         }
         
         setDadosTelaCliente(cliente);
-        
+        painelAdcionarMedidas1.setIdCliente(Integer.parseInt(tfId.getText()));
         botaoEditar.setEnabled(true);
     }//GEN-LAST:event_botaoPesquisarActionPerformed
 
@@ -713,8 +749,18 @@ public class PainelCadastroCliente extends javax.swing.JPanel {
 
     private void botaoAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtualizarActionPerformed
         Cliente cliente = getDadosTelaCliente();
+        
+        if(cliente==null){
+            return;
+        }
+        
+        Conexao conexao = new Conexao();
         cliente.setIdCliente(Integer.parseInt(tfId.getText()));
-        new Conexao().editarCliente(cliente);
+        if(conexao.pesqIDCliente(Integer.parseInt(tfId.getText()))==null){
+            JOptionPane.showMessageDialog(this, "Id não existe");
+            return;
+        }            
+        conexao.editarCliente(cliente);
         botaoNovo.setEnabled(true);
         botaoEditar.setEnabled(true);
         botaoSalvar.setEnabled(false);
@@ -732,7 +778,9 @@ public class PainelCadastroCliente extends javax.swing.JPanel {
             cliente.setDataInclusao(dataFormat(tfDataInclusao.getText()));
             cliente.setDataNascimento(dataFormat(tfDataNascimento.getText()));
         } catch (ParseException ex) {
-            System.out.println("Erro na funcao preencherCliente.PainelCadastroCliente:"+ex);
+            System.out.println("Erro na funcao getDadosTelaCliente.PainelCadastroCliente:"+ex);
+            String[]erro = ex.toString().split(":");
+            JOptionPane.showMessageDialog(this, "Formato desconhecido : "+erro[2]);
             return null;
         }
         
@@ -747,6 +795,7 @@ public class PainelCadastroCliente extends javax.swing.JPanel {
         cliente.setCidade(tfCidade.getText());
         cliente.setUf(cbUf.getSelectedItem().toString());
         cliente.setStatus(cbStatus.getSelectedItem().toString());
+        cliente.setSexo(cbSexo.getSelectedItem().toString());
         return cliente;
     }
     
@@ -766,6 +815,7 @@ public class PainelCadastroCliente extends javax.swing.JPanel {
         tfCidade.setText(cliente.getCidade());
         cbUf.setSelectedItem(cliente.getUf());
         cbStatus.setSelectedItem(cliente.getStatus());
+        cbSexo.setSelectedItem(cliente.getSexo());
     }
     
     private Date dataFormat(String dataString) throws ParseException{
@@ -824,6 +874,7 @@ public class PainelCadastroCliente extends javax.swing.JPanel {
         cbObjetivo.setEnabled(true);
         cbUf.setEnabled(true);
         cbStatus.setEnabled(true);
+        cbSexo.setEnabled(true);
     }
     
     private void bloquearCampos(){
@@ -841,6 +892,7 @@ public class PainelCadastroCliente extends javax.swing.JPanel {
         cbObjetivo.setEnabled(false);
         cbUf.setEnabled(false);
         cbStatus.setEnabled(false);
+        cbSexo.setEnabled(false);
     }
     
     private int eliminarErro(String num){
@@ -852,6 +904,10 @@ public class PainelCadastroCliente extends javax.swing.JPanel {
         
     }
     
+    private void liberarAvaliacao(boolean liberar){
+        painelAdcionarMedidas1.setEnabled(liberar);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAtualizar;
     private javax.swing.JButton botaoEditar;
@@ -859,6 +915,7 @@ public class PainelCadastroCliente extends javax.swing.JPanel {
     private javax.swing.JButton botaoPesquisar;
     private javax.swing.JButton botaoSalvar;
     private javax.swing.JComboBox cbObjetivo;
+    private javax.swing.JComboBox cbSexo;
     private javax.swing.JComboBox cbStatus;
     private javax.swing.JComboBox cbUf;
     private javax.swing.JLabel jLabel1;
@@ -868,6 +925,7 @@ public class PainelCadastroCliente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -877,6 +935,7 @@ public class PainelCadastroCliente extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jlNomeCliente;
+    private view.painel.PainelAdcionarMedidas painelAdcionarMedidas1;
     private javax.swing.JPanel painelBairro;
     private javax.swing.JPanel painelBotoes;
     private javax.swing.JPanel painelCidade;
@@ -888,11 +947,11 @@ public class PainelCadastroCliente extends javax.swing.JPanel {
     private javax.swing.JPanel painelEndereco;
     private javax.swing.JTabbedPane painelGuia;
     private javax.swing.JPanel painelId;
-    private javax.swing.JPanel painelMedidasCliente;
     private javax.swing.JPanel painelNome;
     private javax.swing.JPanel painelNome2;
     private javax.swing.JPanel painelObjetivo;
     private javax.swing.JPanel painelRg;
+    private javax.swing.JPanel painelSexo;
     private javax.swing.JPanel painelStatus;
     private javax.swing.JPanel painelTelefone1;
     private javax.swing.JPanel painelTelefone2;

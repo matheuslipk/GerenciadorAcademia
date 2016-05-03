@@ -27,6 +27,7 @@ public class Cliente {
     private int idMedidas;
     private String email;
     private String uf;
+    private String sexo;
     
 
     /**
@@ -269,5 +270,19 @@ public class Cliente {
      */
     public void setUf(String uf) {
         this.uf = uf;
+    }
+
+    /**
+     * @return the sexo
+     */
+    public String getSexo() {
+        return sexo;
+    }
+
+    /**
+     * @param sexo the sexo to set
+     */
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 }
