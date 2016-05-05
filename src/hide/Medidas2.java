@@ -78,11 +78,10 @@ public class Medidas2 {
     }
 
     /**
-     * @param peso the imc to set
-     * @param altura
+     * @param imc the imc to set
      */
-    public void setImc(double peso, double altura) {
-        this.imc = peso/((altura/100)*(altura/100));
+    public void setImc(double imc) {
+        this.imc = imc;
     }
 
     /**

@@ -41,13 +41,13 @@ public class PainelRegistroCliente extends javax.swing.JPanel {
         tfId = new javax.swing.JTextField();
         painelDataInclusao = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        tfDataInclusao = new javax.swing.JTextField();
+        tfDataInclusao = new com.toedter.calendar.JDateChooser();
         painelNome2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         tfNome = new javax.swing.JTextField();
         painelDataNascimento = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        tfDataNascimento = new javax.swing.JTextField();
+        tfDataNascimento = new com.toedter.calendar.JDateChooser();
         painelRg = new javax.swing.JPanel();
         tfRg = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -226,9 +226,9 @@ public class PainelRegistroCliente extends javax.swing.JPanel {
         painelDataInclusaoLayout.setHorizontalGroup(
             painelDataInclusaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelDataInclusaoLayout.createSequentialGroup()
-                .addGroup(painelDataInclusaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                    .addComponent(tfDataInclusao))
+                .addGroup(painelDataInclusaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfDataInclusao, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         painelDataInclusaoLayout.setVerticalGroup(
@@ -237,7 +237,7 @@ public class PainelRegistroCliente extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfDataInclusao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         painelNome2.setBackground(new java.awt.Color(255, 255, 255));
@@ -251,7 +251,7 @@ public class PainelRegistroCliente extends javax.swing.JPanel {
         painelNome2Layout.setHorizontalGroup(
             painelNome2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel3)
-            .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         painelNome2Layout.setVerticalGroup(
             painelNome2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -273,18 +273,18 @@ public class PainelRegistroCliente extends javax.swing.JPanel {
         painelDataNascimentoLayout.setHorizontalGroup(
             painelDataNascimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelDataNascimentoLayout.createSequentialGroup()
-                .addGroup(painelDataNascimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(tfDataNascimento))
+                .addGroup(painelDataNascimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4)
+                    .addComponent(tfDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         painelDataNascimentoLayout.setVerticalGroup(
             painelDataNascimentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelDataNascimentoLayout.createSequentialGroup()
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(tfDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10))
+                .addContainerGap())
         );
 
         painelRg.setBackground(new java.awt.Color(255, 255, 255));
@@ -610,9 +610,9 @@ public class PainelRegistroCliente extends javax.swing.JPanel {
                         .addComponent(painelId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(painelDataInclusao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(painelNome2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
+                        .addComponent(painelNome2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(painelDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(painelRg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -657,14 +657,14 @@ public class PainelRegistroCliente extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelGuia, javax.swing.GroupLayout.PREFERRED_SIZE, 779, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(painelBotoes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(painelNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(60, 60, 60)
                 .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 121, Short.MAX_VALUE))
+            .addComponent(painelGuia, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -698,17 +698,7 @@ public class PainelRegistroCliente extends javax.swing.JPanel {
             String mens = "Digite um nome válido.";
             JOptionPane.showMessageDialog(this, mens,"Erro", JOptionPane.ERROR_MESSAGE);
             return;
-        }
-        if(tfDataInclusao.getText().length()<9){
-            String mens = "Verifique a data de inclusão";
-            JOptionPane.showMessageDialog(this, mens,"Erro", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        if(tfDataNascimento.getText().length()<9){
-            String mens = "Verifique a data de nascimento";
-            JOptionPane.showMessageDialog(this, mens,"Erro", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+        }        
         
         Cliente cliente = getDadosTelaCliente();
         
@@ -722,7 +712,7 @@ public class PainelRegistroCliente extends javax.swing.JPanel {
         botaoEditar.setEnabled(true);
         
         new Conexao().addCliente(cliente);
-        JOptionPane.showMessageDialog(this, Strings.mensCadSucesso , "Sucesso", JOptionPane.OK_OPTION);
+        JOptionPane.showMessageDialog(this, Strings.salvoSucesso );
         
     }//GEN-LAST:event_botaoSalvarActionPerformed
 
@@ -777,7 +767,7 @@ public class PainelRegistroCliente extends javax.swing.JPanel {
         botaoAtualizar.setEnabled(false);
         bloquearCampos();
         jlNomeCliente.setText(cliente.getNome());
-        JOptionPane.showMessageDialog(this, Strings.mensAtuaSucesso);
+        JOptionPane.showMessageDialog(this, Strings.atualSucesso);
     }//GEN-LAST:event_botaoAtualizarActionPerformed
 
     private Cliente getDadosTelaCliente(){
@@ -785,9 +775,9 @@ public class PainelRegistroCliente extends javax.swing.JPanel {
 //        cliente.setIdCliente(Integer.parseInt(tfCodigo.getText()));
         cliente.setNome(tfNome.getText());
         try {
-            cliente.setDataInclusao(dataFormat(tfDataInclusao.getText()));
-            cliente.setDataNascimento(dataFormat(tfDataNascimento.getText()));
-        } catch (ParseException ex) {
+            cliente.setDataInclusao(tfDataInclusao.getDate());
+            cliente.setDataNascimento(tfDataNascimento.getDate());
+        } catch (Exception ex) {
             System.out.println("Erro na funcao getDadosTelaCliente.PainelCadastroCliente:"+ex);
             String[]erro = ex.toString().split(":");
             JOptionPane.showMessageDialog(this, "Formato desconhecido : "+erro[2]);
@@ -812,8 +802,8 @@ public class PainelRegistroCliente extends javax.swing.JPanel {
     private void setDadosTelaCliente(Cliente cliente){
         jlNomeCliente.setText(cliente.getNome());
         tfNome.setText(cliente.getNome());
-        tfDataInclusao.setText(dataImprimir(cliente.getDataInclusao()));
-        tfDataNascimento.setText(dataImprimir(cliente.getDataNascimento()));
+        tfDataInclusao.setDate(cliente.getDataInclusao());
+        tfDataNascimento.setDate(cliente.getDataNascimento());
         tfRg.setText(cliente.getRg());
         tfEmail.setText(cliente.getEmail());
         tfTelefone1.setText(cliente.getTelefone1());
@@ -856,8 +846,8 @@ public class PainelRegistroCliente extends javax.swing.JPanel {
     
     private void limparCampos(){
         tfNome.setText(null);
-        tfDataInclusao.setText(null);
-        tfDataNascimento.setText(null);
+        tfDataInclusao.setDateFormatString(null);
+        tfDataNascimento.setDateFormatString(null);
         tfRg.setText(null);
         tfEmail.setText(null);
         tfTelefone1.setText(null);
@@ -970,8 +960,8 @@ public class PainelRegistroCliente extends javax.swing.JPanel {
     private javax.swing.JTextField tfBairro;
     private javax.swing.JTextField tfCidade;
     private javax.swing.JTextField tfCpf;
-    private javax.swing.JTextField tfDataInclusao;
-    private javax.swing.JTextField tfDataNascimento;
+    private com.toedter.calendar.JDateChooser tfDataInclusao;
+    private com.toedter.calendar.JDateChooser tfDataNascimento;
     private javax.swing.JTextField tfEmail;
     private javax.swing.JTextField tfEndereco;
     private javax.swing.JTextField tfId;

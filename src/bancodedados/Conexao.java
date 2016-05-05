@@ -1,6 +1,7 @@
 package bancodedados;
 
 import hide.Cliente;
+import hide.constantes.Strings;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.DriverManager;
@@ -13,10 +14,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Conexao {
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String URL_BANCO = "jdbc:mysql://localhost/academia";
-    static final String USUARIO = "root";
-    static final String SENHA_BANCO = "2104";
+    static final String JDBC_DRIVER = Strings.getJDBCDriver();
+    static final String URL_BANCO = Strings.getUrlBanco();
+    static final String USUARIO = Strings.getUsuario();
+    static final String SENHA_BANCO = Strings.getSenha();
     private final Cliente cliente = new Cliente();
     
     public Cliente pesqIDCliente(int id){

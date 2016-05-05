@@ -24,7 +24,11 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
 
         jlImagemCorpoHumano = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel15 = new javax.swing.JPanel();
+        painelId = new javax.swing.JPanel();
+        jlIdCliente = new javax.swing.JLabel();
+        lID = new javax.swing.JLabel();
+        painelGuia = new javax.swing.JTabbedPane();
+        painelMedidas1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         tfBracRelDir = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -37,7 +41,7 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
-        tfRCQ = new javax.swing.JTextField();
+        tfRcq = new javax.swing.JTextField();
         botaoAjudaCQ = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         tfPescoco = new javax.swing.JTextField();
@@ -74,9 +78,10 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         botaoSalvarDados = new javax.swing.JButton();
-        jPanel14 = new javax.swing.JPanel();
-        jlIdCliente = new javax.swing.JLabel();
-        lID = new javax.swing.JLabel();
+        painelImc1 = new view.painel.PainelImc();
+        painelDataAvaliacao = new javax.swing.JPanel();
+        tfDataAvaliacao = new com.toedter.calendar.JDateChooser();
+        jLabel17 = new javax.swing.JLabel();
 
         jlImagemCorpoHumano.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/corpo-humano.PNG"))); // NOI18N
         jlImagemCorpoHumano.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -85,6 +90,32 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Peso e medidas Corporais (cm e Kg)");
 
+        jlIdCliente.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jlIdCliente.setForeground(new java.awt.Color(255, 0, 0));
+        jlIdCliente.setText("0");
+
+        lID.setText("ID: ");
+
+        javax.swing.GroupLayout painelIdLayout = new javax.swing.GroupLayout(painelId);
+        painelId.setLayout(painelIdLayout);
+        painelIdLayout.setHorizontalGroup(
+            painelIdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelIdLayout.createSequentialGroup()
+                .addComponent(lID)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
+        );
+        painelIdLayout.setVerticalGroup(
+            painelIdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelIdLayout.createSequentialGroup()
+                .addGroup(painelIdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lID)
+                    .addComponent(jlIdCliente))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jPanel3.setBackground(new java.awt.Color(204, 204, 204));
         jPanel3.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jPanel3.setPreferredSize(new java.awt.Dimension(380, 80));
 
@@ -120,6 +151,7 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
                 .addComponent(tfBracRelEsq, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jPanel7.setBackground(new java.awt.Color(204, 204, 204));
         jPanel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jPanel7.setPreferredSize(new java.awt.Dimension(380, 42));
 
@@ -148,6 +180,7 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
                 .addComponent(tfToraxIns, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jPanel10.setBackground(new java.awt.Color(204, 204, 204));
         jPanel10.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jPanel10.setPreferredSize(new java.awt.Dimension(380, 42));
 
@@ -155,6 +188,11 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
         tfQuadril.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfQuadril.setEnabled(false);
         tfQuadril.setNextFocusableComponent(tfCoxaDir);
+        tfQuadril.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfQuadrilKeyReleased(evt);
+            }
+        });
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel13.setText("Quadril");
@@ -177,17 +215,18 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
                 .addComponent(tfQuadril, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jPanel11.setBackground(new java.awt.Color(204, 204, 204));
         jPanel11.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jPanel11.setPreferredSize(new java.awt.Dimension(380, 42));
 
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel14.setText("Relação Cin/Quad");
 
-        tfRCQ.setEditable(false);
-        tfRCQ.setBackground(new java.awt.Color(255, 255, 255));
-        tfRCQ.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        tfRCQ.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tfRCQ.setEnabled(false);
+        tfRcq.setEditable(false);
+        tfRcq.setBackground(new java.awt.Color(255, 255, 255));
+        tfRcq.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        tfRcq.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tfRcq.setEnabled(false);
 
         botaoAjudaCQ.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         botaoAjudaCQ.setText("?");
@@ -208,7 +247,7 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                .addComponent(tfRCQ, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfRcq, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
                 .addComponent(botaoAjudaCQ, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(63, 63, 63))
@@ -220,10 +259,11 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
                     .addComponent(botaoAjudaCQ, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel14)
-                        .addComponent(tfRCQ, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(tfRcq, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jPanel1.setPreferredSize(new java.awt.Dimension(380, 42));
         jPanel1.setRequestFocusEnabled(false);
@@ -253,6 +293,7 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
                 .addComponent(tfPescoco, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
         jPanel2.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jPanel2.setPreferredSize(new java.awt.Dimension(380, 42));
 
@@ -281,6 +322,7 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
                 .addComponent(tfOmbro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jPanel6.setBackground(new java.awt.Color(204, 204, 204));
         jPanel6.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jPanel6.setPreferredSize(new java.awt.Dimension(380, 42));
 
@@ -309,6 +351,7 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
                 .addComponent(tfToraxRelx, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jPanel4.setBackground(new java.awt.Color(204, 204, 204));
         jPanel4.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jPanel4.setPreferredSize(new java.awt.Dimension(380, 42));
 
@@ -344,12 +387,18 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
                 .addComponent(tfBracContEsq, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jPanel8.setBackground(new java.awt.Color(204, 204, 204));
         jPanel8.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jPanel8.setPreferredSize(new java.awt.Dimension(380, 42));
 
         tfCintura.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         tfCintura.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tfCintura.setEnabled(false);
+        tfCintura.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfCinturaKeyReleased(evt);
+            }
+        });
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel11.setText("Cintura");
@@ -372,6 +421,7 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
                 .addComponent(tfCintura, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jPanel5.setBackground(new java.awt.Color(204, 204, 204));
         jPanel5.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jPanel5.setPreferredSize(new java.awt.Dimension(380, 42));
 
@@ -407,6 +457,7 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
                 .addComponent(tfAntebracoEsq, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jPanel12.setBackground(new java.awt.Color(204, 204, 204));
         jPanel12.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jPanel12.setPreferredSize(new java.awt.Dimension(380, 42));
 
@@ -442,6 +493,7 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
                 .addComponent(tfCoxaEsq, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jPanel13.setBackground(new java.awt.Color(204, 204, 204));
         jPanel13.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jPanel13.setPreferredSize(new java.awt.Dimension(380, 42));
 
@@ -477,6 +529,7 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
                 .addComponent(tfPanturrilhaEsq, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        jPanel9.setBackground(new java.awt.Color(204, 204, 204));
         jPanel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jPanel9.setPreferredSize(new java.awt.Dimension(380, 42));
 
@@ -516,11 +569,11 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
         jPanel16Layout.setHorizontalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel16Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(109, 109, 109)
                 .addComponent(jLabel2)
-                .addGap(84, 84, 84)
+                .addGap(83, 83, 83)
                 .addComponent(jLabel3)
-                .addGap(44, 44, 44))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel16Layout.setVerticalGroup(
             jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -541,38 +594,38 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
-        jPanel15.setLayout(jPanel15Layout);
-        jPanel15Layout.setHorizontalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
+        javax.swing.GroupLayout painelMedidas1Layout = new javax.swing.GroupLayout(painelMedidas1);
+        painelMedidas1.setLayout(painelMedidas1Layout);
+        painelMedidas1Layout.setHorizontalGroup(
+            painelMedidas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelMedidas1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(painelMedidas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelMedidas1Layout.createSequentialGroup()
+                        .addGroup(painelMedidas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel15Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoSalvarDados)
-                .addGap(127, 127, 127))
+                            .addGroup(painelMedidas1Layout.createSequentialGroup()
+                                .addGroup(painelMedidas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botaoSalvarDados)))
+                        .addContainerGap(14, Short.MAX_VALUE))))
         );
-        jPanel15Layout.setVerticalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel15Layout.createSequentialGroup()
+        painelMedidas1Layout.setVerticalGroup(
+            painelMedidas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelMedidas1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
@@ -586,9 +639,12 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(painelMedidas1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(painelMedidas1Layout.createSequentialGroup()
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botaoSalvarDados, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -601,32 +657,31 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        painelGuia.addTab("Parte 1", painelMedidas1);
+        painelGuia.addTab("Parte 2", painelImc1);
+
+        tfDataAvaliacao.setEnabled(false);
+
+        jLabel17.setText("Data da avaliação");
+
+        javax.swing.GroupLayout painelDataAvaliacaoLayout = new javax.swing.GroupLayout(painelDataAvaliacao);
+        painelDataAvaliacao.setLayout(painelDataAvaliacaoLayout);
+        painelDataAvaliacaoLayout.setHorizontalGroup(
+            painelDataAvaliacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelDataAvaliacaoLayout.createSequentialGroup()
+                .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(botaoSalvarDados, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(tfDataAvaliacao, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-
-        jlIdCliente.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jlIdCliente.setForeground(new java.awt.Color(255, 0, 0));
-        jlIdCliente.setText("0");
-
-        lID.setText("ID: ");
-
-        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
-        jPanel14.setLayout(jPanel14Layout);
-        jPanel14Layout.setHorizontalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel14Layout.createSequentialGroup()
-                .addComponent(lID)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 20, Short.MAX_VALUE))
-        );
-        jPanel14Layout.setVerticalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel14Layout.createSequentialGroup()
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lID)
-                    .addComponent(jlIdCliente))
+        painelDataAvaliacaoLayout.setVerticalGroup(
+            painelDataAvaliacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelDataAvaliacaoLayout.createSequentialGroup()
+                .addGroup(painelDataAvaliacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel17)
+                    .addComponent(tfDataAvaliacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -634,28 +689,36 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jlImagemCorpoHumano, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(painelGuia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jlImagemCorpoHumano, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(173, 173, 173)
-                        .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(painelId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(painelDataAvaliacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(71, 71, 71))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(7, 7, 7)
+                        .addComponent(painelId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(painelDataAvaliacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jlImagemCorpoHumano, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(painelGuia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -673,13 +736,42 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
         
     }//GEN-LAST:event_botaoSalvarDadosActionPerformed
 
+    private void tfCinturaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCinturaKeyReleased
+        if(eliminarErro(tfCintura.getText())==0 || eliminarErro(tfQuadril.getText())==0){
+            tfRcq.setText(null);
+            return;
+        }
+        String valor = String.format("%.3f",
+                eliminarErro(tfCintura.getText())/eliminarErro(tfQuadril.getText()));
+        
+        tfRcq.setText(valor.split(",")[0]+"."+valor.split(",")[1]);
+    }//GEN-LAST:event_tfCinturaKeyReleased
+
+    private void tfQuadrilKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfQuadrilKeyReleased
+        if(eliminarErro(tfCintura.getText())==0 || eliminarErro(tfQuadril.getText())==0){
+            tfRcq.setText(null);
+            return;
+        }
+        String valor = String.format("%.3f",
+                eliminarErro(tfCintura.getText())/eliminarErro(tfQuadril.getText()));
+        
+        tfRcq.setText(valor.split(",")[0]+"."+valor.split(",")[1]);
+    }//GEN-LAST:event_tfQuadrilKeyReleased
+
     public void setIdCliente(int id){
         jlIdCliente.setText(""+id);
-        if(id==0)
+        if(id==0){
             bloquearCampos();
-        else
+            //Bloqueia o painelImc
+            painelImc1.setIdCliente(id);
+        }
+        else{
             liberarCampos();
+            //Libera o painelImc
+            painelImc1.setIdCliente(id);
+        }
     }
+    
     
     private void bloquearCampos(){
         tfAbdomen.setEnabled(false);
@@ -697,10 +789,11 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
         tfPanturrilhaEsq.setEnabled(false);
         tfPescoco.setEnabled(false);
         tfQuadril.setEnabled(false);
-        tfRCQ.setEnabled(false);
+        tfRcq.setEnabled(false);
         tfToraxIns.setEnabled(false);
         tfToraxRelx.setEnabled(false);
         botaoSalvarDados.setEnabled(false);
+        tfDataAvaliacao.setEnabled(false);
     }
     
     private void liberarCampos(){
@@ -719,10 +812,11 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
         tfPanturrilhaEsq.setEnabled(true);
         tfPescoco.setEnabled(true);
         tfQuadril.setEnabled(true);
-        tfRCQ.setEnabled(true);
+        tfRcq.setEnabled(true);
         tfToraxIns.setEnabled(true);
         tfToraxRelx.setEnabled(true);
         botaoSalvarDados.setEnabled(true);
+        tfDataAvaliacao.setEnabled(true);
     }
     
     private void limparCampos(){
@@ -741,7 +835,7 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
         tfPanturrilhaEsq.setText(null);
         tfPescoco.setText(null);
         tfQuadril.setText(null);
-        tfRCQ.setText(null);
+        tfRcq.setText(null);
         tfToraxIns.setText(null);
         tfToraxRelx.setText(null);
     }
@@ -827,7 +921,7 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
         medida.setPanturrilhaEsq(eliminarErro(tfPanturrilhaEsq.getText()));        
         medida.setPescoco(eliminarErro(tfPescoco.getText()));                       
         medida.setQuadril(eliminarErro(tfQuadril.getText()));
-        medida.setRcq(eliminarErro(tfRCQ.getText()));
+        medida.setRcq(eliminarErro(tfRcq.getText()));
         medida.setToraxInsp(eliminarErro(tfToraxIns.getText()));    
         medida.setToraxRlx(eliminarErro(tfToraxRelx.getText()));        
         medida.setDataMedicao(Calendar.getInstance().getTime());
@@ -861,6 +955,7 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -874,8 +969,6 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -888,6 +981,11 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
     private javax.swing.JLabel jlIdCliente;
     private javax.swing.JLabel jlImagemCorpoHumano;
     private javax.swing.JLabel lID;
+    private javax.swing.JPanel painelDataAvaliacao;
+    private javax.swing.JTabbedPane painelGuia;
+    private javax.swing.JPanel painelId;
+    private view.painel.PainelImc painelImc1;
+    private javax.swing.JPanel painelMedidas1;
     private javax.swing.JTextField tfAbdomen;
     private javax.swing.JTextField tfAntebracoDir;
     private javax.swing.JTextField tfAntebracoEsq;
@@ -898,12 +996,13 @@ public class PainelAdcionarMedidas extends javax.swing.JPanel {
     private javax.swing.JTextField tfCintura;
     private javax.swing.JTextField tfCoxaDir;
     private javax.swing.JTextField tfCoxaEsq;
+    private com.toedter.calendar.JDateChooser tfDataAvaliacao;
     private javax.swing.JTextField tfOmbro;
     private javax.swing.JTextField tfPanturrilhaDir;
     private javax.swing.JTextField tfPanturrilhaEsq;
     private javax.swing.JTextField tfPescoco;
     private javax.swing.JTextField tfQuadril;
-    private javax.swing.JTextField tfRCQ;
+    private javax.swing.JTextField tfRcq;
     private javax.swing.JTextField tfToraxIns;
     private javax.swing.JTextField tfToraxRelx;
     // End of variables declaration//GEN-END:variables

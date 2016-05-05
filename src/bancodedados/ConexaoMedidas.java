@@ -2,6 +2,7 @@ package bancodedados;
 
 import hide.Cliente;
 import hide.Medidas;
+import hide.constantes.Strings;
 import java.sql.Connection;
 import java.sql.Statement;
 import java.sql.DriverManager;
@@ -14,10 +15,10 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class ConexaoMedidas {
-    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String URL_BANCO = "jdbc:mysql://localhost/academia";
-    static final String USUARIO = "root";
-    static final String SENHA_BANCO = "2104";
+    static final String JDBC_DRIVER = Strings.getJDBCDriver();
+    static final String URL_BANCO = Strings.getUrlBanco();
+    static final String USUARIO = Strings.getUsuario();
+    static final String SENHA_BANCO = Strings.getSenha();
     private final Medidas medidas = new Medidas();
     
     public Medidas pesqIDMedidas(int idCliente){
@@ -108,7 +109,7 @@ public class ConexaoMedidas {
         return String.format("%s/%s/%s", arrayData[2], arrayData[1], arrayData[0]);
     }        
     
-    public void editarCliente(Cliente cliente){
+    public void editarMedidas(Cliente cliente){
         Connection connection = null; //Gerencia a conexão
         Statement statement = null; //Instrução de consulta
         
@@ -164,16 +165,14 @@ public class ConexaoMedidas {
             String comando = null;
             
             
-            comando = String.format("INSERT INTO medidas (idCliente, peso, altura, "
-                    + "imc, pescoco, ombro, bracoRlxDir, bracoRlxEsq, bracoConDir, "
+            comando = String.format("INSERT INTO medidas (idCliente, pescoco, ombro, "
+                    + "bracoRlxDir, bracoRlxEsq, bracoConDir, "
                     + "bracoConEsq, anteBracoDir, anteBracoEsq, toraxRlx, toraxInsp, "
                     + "cintura, abdomen, quadril, rcq, coxaDir, coxaEsq, panturrilhaDir, "
                     + "panturrilhaEsq, dataMedicao) VALUES (%d, %s, %s, %s, "
                     + "%s, %s, %s, %s, %s, %s, %s, %s, %s, "
-                    + "%s, %s, %s, %s, %s, %s,"
-                    + "%s, %s, %s, \'%s\')", medidas.getIdCliente(), 
-                    Double.toString(medidas.getPeso()), Double.toString(medidas.getAltura()),
-                    Double.toString(medidas.getImc()), Double.toString(medidas.getPescoco()), 
+                    + "%s, %s, %s, %s, %s, %s,\'%s\')", medidas.getIdCliente(), 
+                    Double.toString(medidas.getPescoco()), 
                     Double.toString(medidas.getOmbro()), Double.toString(medidas.getBracoRlxDir()),
                     Double.toString(medidas.getBracoRlxEsq()), Double.toString(medidas.getBracoConDir()),
                     Double.toString(medidas.getBracoConEsq()), Double.toString(medidas.getAntebracoDir()), 
